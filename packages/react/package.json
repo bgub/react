@@ -8,34 +8,65 @@
   "homepage": "https://react.dev/",
   "bugs": "https://github.com/facebook/react/issues",
   "license": "MIT",
+  "types": "./index.d.ts",
+  "typesVersions": {
+    "<=5.0": {
+      "*": [
+        "ts5.0/*"
+      ]
+    }
+  },
   "files": [
     "LICENSE",
     "README.md",
     "index.js",
+    "index.d.ts",
+    "global.d.ts",
+    "canary.d.ts",
+    "experimental.d.ts",
     "cjs/",
     "compiler-runtime.js",
+    "compiler-runtime.d.ts",
     "jsx-runtime.js",
+    "jsx-runtime.d.ts",
     "jsx-runtime.react-server.js",
     "jsx-dev-runtime.js",
+    "jsx-dev-runtime.d.ts",
     "jsx-dev-runtime.react-server.js",
-    "react.react-server.js"
+    "react.react-server.js",
+    "ts5.0/"
   ],
   "main": "index.js",
   "exports": {
     ".": {
+      "types@<=5.0": "./ts5.0/index.d.ts",
+      "types": "./index.d.ts",
       "react-server": "./react.react-server.js",
       "default": "./index.js"
     },
     "./package.json": "./package.json",
+    "./canary": {
+      "types@<=5.0": "./ts5.0/canary.d.ts",
+      "types": "./canary.d.ts"
+    },
+    "./experimental": {
+      "types@<=5.0": "./ts5.0/experimental.d.ts",
+      "types": "./experimental.d.ts"
+    },
     "./jsx-runtime": {
+      "types@<=5.0": "./ts5.0/jsx-runtime.d.ts",
+      "types": "./jsx-runtime.d.ts",
       "react-server": "./jsx-runtime.react-server.js",
       "default": "./jsx-runtime.js"
     },
     "./jsx-dev-runtime": {
+      "types@<=5.0": "./ts5.0/jsx-dev-runtime.d.ts",
+      "types": "./jsx-dev-runtime.d.ts",
       "react-server": "./jsx-dev-runtime.react-server.js",
       "default": "./jsx-dev-runtime.js"
     },
     "./compiler-runtime": {
+      "types": "./compiler-runtime.d.ts",
       "react-server": "./compiler-runtime.js",
       "default": "./compiler-runtime.js"
     },
@@ -48,5 +79,8 @@
   },
   "engines": {
     "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "csstype": "^3.0.2"
   }
 }

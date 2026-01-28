@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "lib": [
+      "ES2020"
+    ],
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "exactOptionalPropertyTypes": true,
+    "types": [
+      "trusted-types"
+    ],
+    "noEmit": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "skipLibCheck": false,
+    "baseUrl": "..",
+    "paths": {
+      "react": ["./index.d.ts"],
+      "react/*": ["./*"]
+    },
+    "typeRoots": [
+      "../../../node_modules/@types",
+      ".."
+    ]
+  },
+  "include": [
+    "../index.d.ts",
+    "../global.d.ts",
+    "../canary.d.ts",
+    "../experimental.d.ts",
+    "../jsx-runtime.d.ts",
+    "../jsx-dev-runtime.d.ts",
+    "../compiler-runtime.d.ts",
+    "test/**/*.ts",
+    "test/**/*.tsx"
+  ]
+}

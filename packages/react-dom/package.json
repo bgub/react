@@ -3,6 +3,7 @@
   "version": "19.3.0",
   "description": "React package for working with the DOM.",
   "main": "index.js",
+  "types": "./index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/facebook/react.git",
@@ -25,24 +26,38 @@
   "files": [
     "LICENSE",
     "README.md",
-    "client.js",
-    "client.react-server.js",
     "index.js",
+    "index.d.ts",
+    "client.js",
+    "client.d.ts",
+    "client.react-server.js",
+    "canary.d.ts",
+    "experimental.d.ts",
     "profiling.js",
     "profiling.react-server.js",
     "react-dom.react-server.js",
-    "server.browser.js",
-    "server.bun.js",
-    "server.edge.js",
     "server.js",
+    "server.d.ts",
+    "server.browser.js",
+    "server.browser.d.ts",
+    "server.bun.js",
+    "server.bun.d.ts",
+    "server.edge.js",
+    "server.edge.d.ts",
     "server.node.js",
+    "server.node.d.ts",
     "server.react-server.js",
-    "static.browser.js",
-    "static.edge.js",
     "static.js",
+    "static.d.ts",
+    "static.browser.js",
+    "static.browser.d.ts",
+    "static.edge.js",
+    "static.edge.d.ts",
     "static.node.js",
+    "static.node.d.ts",
     "static.react-server.js",
     "test-utils.js",
+    "test-utils/",
     "unstable_testing.js",
     "unstable_testing.react-server.js",
     "unstable_server-external-runtime.js",
@@ -50,14 +65,23 @@
   ],
   "exports": {
     ".": {
+      "types": "./index.d.ts",
       "react-server": "./react-dom.react-server.js",
       "default": "./index.js"
     },
     "./client": {
+      "types": "./client.d.ts",
       "react-server": "./client.react-server.js",
       "default": "./client.js"
     },
+    "./canary": {
+      "types": "./canary.d.ts"
+    },
+    "./experimental": {
+      "types": "./experimental.d.ts"
+    },
     "./server": {
+      "types": "./server.d.ts",
       "react-server": "./server.react-server.js",
       "workerd": "./server.edge.js",
       "bun": "./server.bun.js",
@@ -69,22 +93,27 @@
       "default": "./server.node.js"
     },
     "./server.browser": {
+      "types": "./server.browser.d.ts",
       "react-server": "./server.react-server.js",
       "default": "./server.browser.js"
     },
     "./server.bun": {
+      "types": "./server.bun.d.ts",
       "react-server": "./server.react-server.js",
       "default": "./server.bun.js"
     },
     "./server.edge": {
+      "types": "./server.edge.d.ts",
       "react-server": "./server.react-server.js",
       "default": "./server.edge.js"
     },
     "./server.node": {
+      "types": "./server.node.d.ts",
       "react-server": "./server.react-server.js",
       "default": "./server.node.js"
     },
     "./static": {
+      "types": "./static.d.ts",
       "react-server": "./static.react-server.js",
       "workerd": "./static.edge.js",
       "deno": "./static.browser.js",
@@ -95,14 +124,17 @@
       "default": "./static.node.js"
     },
     "./static.browser": {
+      "types": "./static.browser.d.ts",
       "react-server": "./static.react-server.js",
       "default": "./static.browser.js"
     },
     "./static.edge": {
+      "types": "./static.edge.d.ts",
       "react-server": "./static.react-server.js",
       "default": "./static.edge.js"
     },
     "./static.node": {
+      "types": "./static.node.d.ts",
       "react-server": "./static.react-server.js",
       "default": "./static.node.js"
     },
@@ -110,7 +142,10 @@
       "react-server": "./profiling.react-server.js",
       "default": "./profiling.js"
     },
-    "./test-utils": "./test-utils.js",
+    "./test-utils": {
+      "types": "./test-utils/index.d.ts",
+      "default": "./test-utils.js"
+    },
     "./unstable_testing": {
       "react-server": "./unstable_testing.react-server.js",
       "default": "./unstable_testing.js"
