@@ -1,0 +1,101 @@
+name: (Shared) TypeScript Type Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    paths:
+      - 'packages/react/**/*.d.ts'
+      - 'packages/react-dom/**/*.d.ts'
+      - 'packages/react/types/**'
+      - 'packages/react-dom/types/**'
+      - 'packages/react/ts5.0/**'
+      - 'packages/react/package.json'
+      - 'packages/react-dom/package.json'
+      - '.github/workflows/shared_typecheck.yml'
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
+
+env:
+  TZ: /usr/share/zoneinfo/America/Los_Angeles
+  SEGMENT_DOWNLOAD_TIMEOUT_MINS: 1
+
+jobs:
+  typecheck_react:
+    name: TypeCheck React (TS ${{ matrix.typescript }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        typescript: ['5.0', '5.4', 'latest']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: yarn
+          cache-dependency-path: yarn.lock
+      - name: Restore cached node_modules
+        uses: actions/cache@v4
+        id: node_modules
+        with:
+          path: |
+            **/node_modules
+          key: typecheck-node_modules-v1-${{ runner.arch }}-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Ensure clean build directory
+        run: rm -rf build
+      - run: yarn install --frozen-lockfile
+        if: steps.node_modules.outputs.cache-hit != 'true'
+      - name: Install TypeScript ${{ matrix.typescript }}
+        run: |
+          if [ "${{ matrix.typescript }}" = "latest" ]; then
+            npm install -g typescript
+          else
+            npm install -g typescript@${{ matrix.typescript }}
+          fi
+      - name: TypeCheck React types
+        run: |
+          if [ "${{ matrix.typescript }}" = "5.0" ]; then
+            tsc -p packages/react/ts5.0/tsconfig.json
+          else
+            tsc -p packages/react/types/tsconfig.json
+          fi
+
+  typecheck_react_dom:
+    name: TypeCheck React-DOM (TS ${{ matrix.typescript }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        typescript: ['5.4', 'latest']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: yarn
+          cache-dependency-path: yarn.lock
+      - name: Restore cached node_modules
+        uses: actions/cache@v4
+        id: node_modules
+        with:
+          path: |
+            **/node_modules
+          key: typecheck-node_modules-v1-${{ runner.arch }}-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Ensure clean build directory
+        run: rm -rf build
+      - run: yarn install --frozen-lockfile
+        if: steps.node_modules.outputs.cache-hit != 'true'
+      - name: Install TypeScript ${{ matrix.typescript }}
+        run: |
+          if [ "${{ matrix.typescript }}" = "latest" ]; then
+            npm install -g typescript
+          else
+            npm install -g typescript@${{ matrix.typescript }}
+          fi
+      - name: TypeCheck React-DOM types
+        run: tsc -p packages/react-dom/types/tsconfig.json

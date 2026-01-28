@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "exactOptionalPropertyTypes": true,
+    "types": [],
+    "noEmit": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "skipLibCheck": false,
+    "baseUrl": "..",
+    "paths": {
+      "react": ["../../../react/index.d.ts"],
+      "react/*": ["../../../react/*"],
+      "react-dom": ["./index.d.ts"],
+      "react-dom/*": ["./*"]
+    }
+  },
+  "include": [
+    "../index.d.ts",
+    "../client.d.ts",
+    "../canary.d.ts",
+    "../experimental.d.ts",
+    "../server.d.ts",
+    "../server.browser.d.ts",
+    "../server.bun.d.ts",
+    "../server.edge.d.ts",
+    "../server.node.d.ts",
+    "../static.d.ts",
+    "../static.browser.d.ts",
+    "../static.edge.d.ts",
+    "../static.node.d.ts",
+    "../test-utils/index.d.ts",
+    "test/**/*.ts",
+    "test/**/*.tsx"
+  ]
+}
